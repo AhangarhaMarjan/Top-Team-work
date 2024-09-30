@@ -3,27 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask Project</title>
+    <title>Home Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 </head>
 <body>
+    <header>
+        <h1>Welcome to Flask App</h1>
+    </header>
+
     <nav>
         <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('register') }}">Register</a>
+        <a href="{{ url_for('login') }}">Login</a>
         {% if current_user.is_authenticated %}
             <a href="{{ url_for('logout') }}">Logout</a>
-        {% else %}
-            <a href="{{ url_for('login') }}">Login</a>
-            <a href="{{ url_for('register') }}">Register</a>
         {% endif %}
     </nav>
-    <div>
-        {% with messages = get_flashed_messages(with_categories=True) %}
-          {% if messages %}
-            {% for category, message in messages %}
-              <div class="alert alert-{{ category }}">{{ message }}</div>
-            {% endfor %}
-          {% endif %}
-        {% endwith %}
-        {% block content %}{% endblock %}
+
+    <div class="container">
+        <h1>Homepage</h1>
+        <p>This is a simple Flask application demonstrating user registration and login functionality using Flask, SQLAlchemy, and Flask-WTF for form handling.</p>
+        <p>Use the links in the navigation bar to register or log in to the system. Access to other parts of the application is restricted to logged-in users only.</p>
     </div>
 </body>
 </html>
