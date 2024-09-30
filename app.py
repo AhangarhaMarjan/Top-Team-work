@@ -56,11 +56,6 @@ def logout():
     logout_user()
     return redirect(url_for('home'))
 
-@app.route("/home")
-@login_required
-def home():
-    return render_template('home.html')
-
 @app.route("/input")
 @login_required
 def input_page():
