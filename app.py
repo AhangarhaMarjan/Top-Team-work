@@ -4,13 +4,16 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from extensions import db, bcrypt
 from forms import RegistrationForm, LoginForm
+from forms import InputDataForm
 from models import User
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mysecret'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
-db = SQLAlchemy(app)
-bcrypt = Bcrypt(app)
+
+db.init_app(app)
+bcrypt.init_app(app)
+
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 
@@ -51,15 +54,23 @@ def login():
             flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template('login.html', form=form)
 
+@app.route("/input", methods=['GET', 'POST'])
+@login_required
+def input_page():
+    form = InputDataForm()
+    if form.validate_on_submit():
+        title = form.title.data
+        description = form.description.data
+        flash(f'Data submitted: {title} - {description}', 'success')
+        
+        return redirect(url_for('input_page'))
+    
+    return render_template('input.html', form=form)
+
 @app.route("/logout")
 def logout():
     logout_user()
     return redirect(url_for('home'))
-
-@app.route("/input")
-@login_required
-def input_page():
-    return "This is the input page, restricted to logged-in users."
 
 @app.route("/predict")
 @login_required

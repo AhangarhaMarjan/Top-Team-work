@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <title>Home - Cancer Recognition</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <header>
-        <h1>Welcome to Flask App</h1>
+        <h1>Welcome to the Cancer Recognition Application</h1>
     </header>
 
     <nav>
-        <a href="{{ url_for('home') }}">Home</a>
-        <a href="{{ url_for('register') }}">Register</a>
         <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('register') }}">Register</a>
+        <a href="{{ url_for('home') }}">Home</a>
         {% if current_user.is_authenticated %}
             <a href="{{ url_for('logout') }}">Logout</a>
         {% endif %}
