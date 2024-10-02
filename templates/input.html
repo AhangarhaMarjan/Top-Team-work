@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Page</title>
+</head>
+<body>
+    <h1>Breast Cancer Diagnosis - Input Features</h1>
+    <form method="POST" action="/input">
+        <label>Mean Radius:</label>
+        <input type="number" name="mean_radius" step="any" required><br>
+
+        <label>Mean Concavity:</label>
+        <input type="number" name="mean_concavity" step="any" required><br>
+
+        <label>Mean Concave Points:</label>
+        <input type="number" name="mean_concave_points" step="any" required><br>
+
+        <label>Texture Error:</label>
+        <input type="number" name="texture_error" step="any" required><br>
+
+        <label>Worst Radius:</label>
+        <input type="number" name="worst_radius" step="any" required><br>
+
+        <label>Worst Smoothness:</label>
+        <input type="number" name="worst_smoothness" step="any" required><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
