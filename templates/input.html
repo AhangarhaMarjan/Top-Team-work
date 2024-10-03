@@ -1,0 +1,33 @@
+<!-- templates/input.html -->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Cancer Data</title>
+</head>
+<body>
+    <h1>Enter Cancer Data for Prediction</h1>
+    <form action="/predict" method="post">
+        <label for="mean_radius">Mean Radius:</label>
+        <input type="text" name="mean_radius" required><br>
+
+        <label for="mean_concavity">Mean Concavity:</label>
+        <input type="text" name="mean_concavity" required><br>
+
+        <label for="mean_concave_points">Mean Concave Points:</label>
+        <input type="text" name="mean_concave_points" required><br>
+
+        <label for="texture_error">Texture Error:</label>
+        <input type="text" name="texture_error" required><br>
+
+        <label for="worst_radius">Worst Radius:</label>
+        <input type="text" name="worst_radius" required><br>
+
+        <label for="worst_smoothness">Worst Smoothness:</label>
+        <input type="text" name="worst_smoothness" required><br>
+
+        <input type="submit" value="Predict">
+    </form>
+</body>
+</html>
