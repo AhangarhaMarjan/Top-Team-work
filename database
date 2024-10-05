@@ -1,0 +1,128 @@
+-- Users Table
+CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT NOT NULL UNIQUE,
+    password_hash TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE
+);
+
+-- Predictions Table
+CREATE TABLE IF NOT EXISTS predictions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER,
+    input_data TEXT NOT NULL, -- Store inputs like age, gender, test results
+    prediction_result TEXT NOT NULL, -- Store cancer diagnosis prediction
+    prediction_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY(user_id) REFERENCES users(id)
+);
+import bcrypt
+
+# Hashing a password
+def hash_password(plain_password):
+    salt = bcrypt.gensalt()
+    hashed = bcrypt.hashpw(plain_password.encode('utf-8'), salt)
+    return hashed
+
+# Verifying password
+def check_password(plain_password, hashed_password):
+    return bcrypt.checkpw(plain_password.encode('utf-8'), hashed_password)
+import sqlite3
+
+def store_prediction(user_id, input_data, prediction_result):
+    conn = sqlite3.connect('cancer_diagnosis.db')
+    cursor = conn.cursor()
+    
+    # Insert the user's inputs and prediction into the predictions table
+    cursor.execute("""
+        INSERT INTO predictions (user_id, input_data, prediction_result)
+        VALUES (?, ?, ?)
+    """, (user_id, input_data, prediction_result))
+    
+    conn.commit()
+    conn.close()
+def get_user_predictions(user_id):
+    conn = sqlite3.connect('cancer_diagnosis.db')
+    cursor = conn.cursor()
+    
+    cursor.execute("""
+        SELECT input_data, prediction_result, prediction_time
+        FROM predictions
+        WHERE user_id = ?
+        ORDER BY prediction_time DESC
+    """, (user_id,))
+    
+    predictions = cursor.fetchall()
+    conn.close()
+    
+    return predictions
+from flask import Flask, render_template, request, redirect, url_for, session
+import sqlite3
+
+app = Flask(__name__)
+app.secret_key = 'your_secret_key'
+
+# User login route
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        
+        conn = sqlite3.connect('cancer_diagnosis.db')
+        cursor = conn.cursor()
+        
+        # Fetch the user
+        cursor.execute("SELECT id, password_hash FROM users WHERE username = ?", (username,))
+        user = cursor.fetchone()
+        conn.close()
+        
+        if user and check_password(password, user[1]):
+            session['user_id'] = user[0]  # Store user ID in session
+            return redirect(url_for('dashboard'))
+    
+    return render_template('login.html')
+
+# Prediction submission route
+@app.route('/submit', methods=['GET', 'POST'])
+def submit_prediction():
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+    
+    if request.method == 'POST':
+        input_data = request.form['input_data']
+        # Use your ML model to generate the prediction
+        prediction_result = model.predict(input_data)  # This is pseudocode for your model
+        
+        store_prediction(session['user_id'], input_data, prediction_result)
+        
+        return redirect(url_for('history'))
+    
+    return render_template('submit.html')
+
+# History route to view predictions
+@app.route('/history')
+def history():
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+    
+    user_predictions = get_user_predictions(session['user_id'])
+    
+    return render_template('history.html', predictions=user_predictions)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+from cryptography.fernet import Fernet
+
+# Generate a key (do this only once, and store the key securely)
+key = Fernet.generate_key()
+cipher_suite = Fernet(key)
+
+# Encrypt data
+def encrypt_data(data):
+    encrypted = cipher_suite.encrypt(data.encode('utf-8'))
+    return encrypted
+
+# Decrypt data
+def decrypt_data(encrypted_data):
+    decrypted = cipher_suite.decrypt(encrypted_data).decode('utf-8')
+    return decrypted
