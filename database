@@ -41,7 +41,7 @@ def store_prediction(user_id, input_data, prediction_result):
     conn.commit()
     conn.close()
 def get_user_predictions(user_id):
-    conn = sqlite3.connect('cancer_diagnosis.db')
+    conn = sqlite3.connect('model.pkl')
     cursor = conn.cursor()
     
     cursor.execute("""
@@ -68,7 +68,7 @@ def login():
         username = request.form['username']
         password = request.form['password']
         
-        conn = sqlite3.connect('cancer_diagnosis.db')
+        conn = sqlite3.connect('model.pkl')
         cursor = conn.cursor()
         
         # Fetch the user
