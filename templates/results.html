@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- Link to the CSS file -->
+</head>
+<body>
+    <div class="container"> <!-- Container for centering content -->
+        <h2 class="title">Prediction Result</h2> <!-- Title with class -->
+        <div class="result-message"> <!-- Message container -->
+            {% if result == 1 %}
+                <p class="result result-positive">The model predicts that you <strong>have lung cancer.</strong></p> <!-- Positive prediction -->
+            {% else %}
+                <p class="result result-negative">The model predicts that you <strong>do not have lung cancer.</strong></p> <!-- Negative prediction -->
+            {% endif %}
+        </div>
+        <br>
+        <!-- Button to go back to input page -->
+        <button onclick="location.href='{{ url_for('input_data') }}'" class="button">Input Again</button>
+    </div>
+    <div class="button-container">
+        <button class="center-button" onclick="location.href='{{ url_for('home') }}'">Return to Home</button>
+        <button class="center-button" onclick="location.href='{{ url_for('history') }}'">History</button>
+    </div>
+    
+</body>
+</html>

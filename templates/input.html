@@ -1,33 +1,106 @@
-<!-- templates/input.html -->
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Input Cancer Data</title>
+    <title>Input Data</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- Link to the CSS file -->
 </head>
 <body>
-    <h1>Enter Cancer Data for Prediction</h1>
-    <form action="/predict" method="post">
-        <label for="mean_radius">Mean Radius:</label>
-        <input type="text" name="mean_radius" required><br>
-
-        <label for="mean_concavity">Mean Concavity:</label>
-        <input type="text" name="mean_concavity" required><br>
-
-        <label for="mean_concave_points">Mean Concave Points:</label>
-        <input type="text" name="mean_concave_points" required><br>
-
-        <label for="texture_error">Texture Error:</label>
-        <input type="text" name="texture_error" required><br>
-
-        <label for="worst_radius">Worst Radius:</label>
-        <input type="text" name="worst_radius" required><br>
-
-        <label for="worst_smoothness">Worst Smoothness:</label>
-        <input type="text" name="worst_smoothness" required><br>
-
-        <input type="submit" value="Predict">
+    <h2>Input Data</h2>
+    <form method="POST">
+        Gender: 
+        <select name="GENDER">
+            <option value="1">Male</option>
+            <option value="0">Female</option>
+        </select><br> <!-- Gender selection -->
+        
+        Age: <input type="number" name="AGE" required><br> <!-- Age input field -->
+        
+        Smoking:
+        <select name="SMOKING">
+            <option value="2">Yes</option>
+            <option value="1">No</option>
+        </select><br> <!-- Smoking selection -->
+        
+        Yellow Fingers:
+        <select name="YELLOW_FINGERS">
+            <option value="2">Yes</option>
+            <option value="1">No</option>
+        </select><br> <!-- Yellow fingers selection -->
+        
+        Anxiety:
+        <select name="ANXIETY">
+            <option value="2">Yes</option>
+            <option value="1">No</option>
+        </select><br> <!-- Anxiety selection -->
+        
+        Peer Pressure:
+        <select name="PEER_PRESSURE">
+            <option value="2">Yes</option>
+            <option value="1">No</option>
+        </select><br> <!-- Peer pressure selection -->
+        
+        Chronic Disease:
+        <select name="CHRONIC DISEASE">
+            <option value="2">Yes</option>
+            <option value="1">No</option>
+        </select><br> <!-- Chronic disease selection -->
+        
+        Fatigue:
+        <select name="FATIGUE">
+            <option value="2">Yes</option>
+            <option value="1">No</option>
+        </select><br> <!-- Fatigue selection -->
+        
+        Allergy:
+        <select name="ALLERGY">
+            <option value="2">Yes</option>
+            <option value="1">No</option>
+        </select><br> <!-- Allergy selection -->
+        
+        Wheezing:
+        <select name="WHEEZING">
+            <option value="2">Yes</option>
+            <option value="1">No</option>
+        </select><br> <!-- Wheezing selection -->
+        
+        Alcohol Consuming:
+        <select name="ALCOHOL CONSUMING">
+            <option value="2">Yes</option>
+            <option value="1">No</option>
+        </select><br> <!-- Alcohol consuming selection -->
+        
+        Coughing:
+        <select name="COUGHING">
+            <option value="2">Yes</option>
+            <option value="1">No</option>
+        </select><br> <!-- Coughing selection -->
+        
+        Shortness of Breath:
+        <select name="SHORTNESS OF BREATH">
+            <option value="2">Yes</option>
+            <option value="1">No</option>
+        </select><br> <!-- Shortness of breath selection -->
+        
+        Swallowing Difficulty:
+        <select name="SWALLOWING DIFFICULTY">
+            <option value="2">Yes</option>
+            <option value="1">No</option>
+        </select><br> <!-- Swallowing difficulty selection -->
+        
+        Chest Pain:
+        <select name="CHEST PAIN">
+            <option value="2">Yes</option>
+            <option value="1">No</option>
+        </select><br> <!-- Chest pain selection -->
+        
+        <button type="submit">Submit</button> <!-- Submit button -->
     </form>
+
+    <div class="button-container">
+        <button class="center-button" onclick="location.href='{{ url_for('home') }}'">Return to Home</button>
+        <button class="center-button" onclick="location.href='{{ url_for('history') }}'">History</button>
+    </div>
+    
 </body>
 </html>

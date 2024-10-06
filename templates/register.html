@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- Link to the CSS file -->
+</head>
+<body>
+    <div class="container"> <!-- Container for centering content -->
+        <h2 class="title">Register</h2> <!-- Title with class -->
+        
+        <!-- Display flash messages -->
+        {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            <ul>
+                {% for category, message in messages %}
+                    <li class="flash-message {{ category }}">{{ message|safe }}</li>  <!-- Use |safe to render HTML -->
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% endwith %}
+
+        <form method="POST">
+            Username: <input type="text" name="username" required><br>
+            Password: <input type="password" name="password" required><br>
+            <button type="submit" class="button">Register</button>
+        </form>
+
+    </div>
+    <!-- Button to go back to home page -->
+    <div class="button-container">
+        <button class="center-button" onclick="location.href='{{ url_for('home') }}'">Return to Home</button>
+    </div>
+    
+</body>
+</html>

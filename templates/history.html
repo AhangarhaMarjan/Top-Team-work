@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- Link to the CSS file -->
+</head>
+<body>
+    <div class="container"> <!-- Container for centering content -->
+        <h2>Prediction History</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Smoking</th>
+                    <th>Prediction Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for prediction in predictions %}
+                <tr>
+                    <td>{{ prediction.age }}</td>
+                    <td>{{ 'Male' if prediction.gender == 1 else 'Female' }}</td>
+                    <td>{{ 'Yes' if prediction.smoking == 2 else 'No' }}</td>
+                    <td>{{ prediction.prediction_result }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button onclick="location.href='{{ url_for('input_data') }}'" class="button">Go to Input Data</button> <!-- Button to go back to input page -->
+    </div>
+    <div class="button-container">
+        <button class="center-button" onclick="location.href='{{ url_for('home') }}'">Return to Home</button>
+    </div>
+    </body>
+</html>
