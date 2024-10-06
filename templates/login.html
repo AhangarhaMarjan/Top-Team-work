@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Register</title>
+    <title>Login</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- Link to the CSS file -->
 </head>
 <body>
     <div class="container"> <!-- Container for centering content -->
-        <h2 class="title">Register</h2> <!-- Title with class -->
+        <h2 class="title">Login</h2> <!-- Title with class -->
         
         <!-- Display flash messages -->
         {% with messages = get_flashed_messages(with_categories=True) %}
@@ -23,13 +23,14 @@
         <form method="POST">
             Username: <input type="text" name="username" required><br>
             Password: <input type="password" name="password" required><br>
-            <button type="submit" class="button">Register</button>
+            <button type="submit" class="button">Login</button>
         </form>
-
     </div>
-    <!-- Button to go back to home page -->
+
     <div class="button-container">
         <button class="center-button" onclick="location.href='{{ url_for('home') }}'">Return to Home</button>
+        <button class="center-button" onclick="location.href='{{ url_for('register') }}'">Register</button>
+
     </div>
     
 </body>

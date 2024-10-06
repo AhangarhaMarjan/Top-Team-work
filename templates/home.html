@@ -1,19 +1,15 @@
-<!-- templates/home.html -->
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Cancer Recognition</title>
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- Link to the CSS file -->
 </head>
 <body>
-    <h1>Welcome to the Cancer Recognition Application</h1>
+    <h1>Welcome to Lung Cancer Prediction</h1>
     <nav>
-        <ul>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/register">Register</a></li>
-            <li><a href="/input">Input Data</a></li>
-        </ul>
+        <a href="{{ url_for('login') }}">Login</a> | 
+        <a href="{{ url_for('register') }}">Register</a> | 
     </nav>
 </body>
 </html>
