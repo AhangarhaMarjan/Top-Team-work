@@ -1,14 +1,14 @@
 # ActivePython 2.7.18.4 (ActiveState Software Inc.) based on
 # Python 2.7.18.4 (default, Aug  9 2021, 23:37:24) [MSC v.1500 32 bit (Intel)] on win32
 # Type "help", "copyright", "credits" or "license()" for more information.
-import pickle
+import joblib
 import numpy as np
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
 with open('model.pkl', 'rb') as f:
-    model = pickle.load(f)
+    model = joblib.load('model.pkl')
     
 @app.route('/')
 def home():
