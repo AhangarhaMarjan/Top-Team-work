@@ -1,0 +1,122 @@
+body {
+    background-color: #f8d5e0; /* Light pink background */
+    font-family: Arial, sans-serif; /* Font style */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+}
+
+nav {
+    background-color: #ff6f91; /* Darker pink navigation bar */
+    padding: 10px; /* Padding for navigation */
+    text-align: center; /* Center align text */
+}
+
+nav a {
+    color: white; /* Link text color */
+    text-decoration: none; /* Remove underline from links */
+    padding: 10px 15px; /* Padding around links */
+    border-radius: 5px; /* Rounded corners for links */
+}
+
+nav a:hover {
+    background-color: #ff4a77; /* Change color on hover */
+}
+
+h1, h2 {
+    text-align: center; /* Center align headings */
+}
+
+form {
+    max-width: 500px; /* Maximum width for the form */
+    margin: 20px auto; /* Center the form */
+    padding: 20px; /* Padding inside the form */
+    background-color: white; /* White background for the form */
+    border-radius: 10px; /* Rounded corners for the form */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect for the form */
+}
+
+input[type="text"], input[type="password"], input[type="number"], select {
+    width: 100%; /* Full width for input fields */
+    padding: 10px; /* Padding inside input fields */
+    margin: 10px 0; /* Top and bottom margin */
+    border: 1px solid #ddd; /* Gray border for input fields */
+    border-radius: 5px; /* Rounded corners for input fields */
+}
+
+button {
+    background-color: #ff6f91; /* Button color */
+    color: white; /* Button text color */
+    border: none; /* Remove border from button */
+    padding: 10px 15px; /* Padding for button */
+    border-radius: 5px; /* Rounded corners for button */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+button:hover {
+    background-color: #ff4a77; /* Button color on hover */
+}
+
+.flash-message {
+    color: red; /* Error message text color */
+    text-align: center; /* Center align flash messages */
+}
+.title {
+    color: #333; /* Dark color for titles */
+    font-size: 1.8em; /* Increase font size for title */
+}
+
+.result-message {
+    margin-top: 20px; /* Add margin above the result message */
+    padding: 10px; /* Add padding */
+    border-radius: 5px; /* Rounded corners for message box */
+    background-color: #f9f9f9; /* Light background for message box */
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for message box */
+}
+
+.result {
+    font-size: 1.2em; /* Increased font size for results */
+}
+
+.result-positive {
+    color: #007bff; /* Blue color for positive result */
+}
+
+.result-negative {
+    color: #dc3545; /* Red color for negative result */
+}
+.flash-message {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.flash-message.success {
+    background-color: #d4edda; /* Green background for success */
+    color: #155724; /* Dark green text */
+}
+
+.flash-message.danger {
+    background-color: #f8d7da; /* Red background for danger */
+    color: #721c24; /* Dark red text */
+}
+.button-container {
+    display: flex;               /* Use flexbox for layout */
+    justify-content: center;     /* Center buttons horizontally */
+    margin-top: 20px;           /* Space above the buttons */
+}
+
+.center-button {
+    margin: 0 10px;             /* Space between buttons */
+    padding: 10px 20px;         /* Padding for button size */
+    font-size: 16px;            /* Font size for buttons */
+    cursor: pointer;            /* Pointer cursor on hover */
+    background-color: #f0c0c0; /* Light pink background color */
+    border: none;                /* No border */
+    border-radius: 5px;         /* Rounded corners */
+    transition: background-color 0.3s; /* Transition for hover effect */
+}
+
+/* Optional hover effect */
+.center-button:hover {
+    background-color: #d99a9a;  /* Darker pink on hover */
+}
